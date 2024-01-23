@@ -20,22 +20,22 @@ namespace MineSweeperNSlidePuzzle
     /// </summary>
     public partial class MainWindow : Window
     {
-        Window_MineSweeper win_Mine;
-        Window_SlidePuzzle win_slide;
         public MainWindow()
         {
             InitializeComponent();
-            win_Mine = new Window_MineSweeper(10,10,20);
-            win_slide = new Window_SlidePuzzle();
+            
+            
         }
 
         private void btn_SlidePuzzle_Click(object sender, RoutedEventArgs e)
         {
+            Window_SlidePuzzle win_slide = new Window_SlidePuzzle(4,4);
             win_slide.Show();
         }
 
         private void btn_MineSweeper_Click(object sender, RoutedEventArgs e)
         {
+            Window_MineSweeper win_Mine = new Window_MineSweeper(10,10,20);
             win_Mine.xx = 10;
             win_Mine.yy = 10;
             win_Mine.Show();

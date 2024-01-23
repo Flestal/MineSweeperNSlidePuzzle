@@ -15,7 +15,7 @@ namespace MineSweeperNSlidePuzzle
     /// </summary>
     public partial class Window_MineSweeper : Window
     {
-        delegate void FHideWindow();
+        //delegate void FHideWindow();
         Button[,] buttons;
         short[,] WhereMine;
         public int xx { get; set; }
@@ -53,12 +53,12 @@ namespace MineSweeperNSlidePuzzle
             GameStart = false;
             GameOver = false;
         }
-        protected override void OnClosing(CancelEventArgs e)
-        {
-            //base.OnClosing(e);
-            e.Cancel = true;
-            Dispatcher.BeginInvoke(DispatcherPriority.Normal, new FHideWindow(_HideThisWindow));
-        }
+        //protected override void OnClosing(CancelEventArgs e)
+        //{
+        //    //base.OnClosing(e);
+        //    e.Cancel = true;
+        //    Dispatcher.BeginInvoke(DispatcherPriority.Normal, new FHideWindow(_HideThisWindow));
+        //}
         void _HideThisWindow()
         {
             this.Hide();
@@ -174,16 +174,6 @@ namespace MineSweeperNSlidePuzzle
             string[] split=btn.Name.Split('_');
             xy[0] = int.Parse(split[1]);
             xy[1] = int.Parse(split[2]);
-            //for (int i = 0; i < xx; i++)
-            //{
-            //    for (int j = 0; j < yy; j++)
-            //    {
-            //        if (buttons[i, j] == btn)
-            //        {
-            //            xy[0] = i; xy[1] = j; return xy;
-            //        }
-            //    }
-            //}
             return xy;
         }
 
