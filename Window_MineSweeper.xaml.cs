@@ -65,6 +65,8 @@ namespace MineSweeperNSlidePuzzle
         }
         SolidColorBrush brush_reset = new SolidColorBrush(Color.FromRgb(221, 221, 221));
         SolidColorBrush brush_found = new SolidColorBrush(Color.FromRgb(180, 180, 180));
+        
+
         private void btn_Click(object sender, RoutedEventArgs e)
         {
             if (GameOver) return;
@@ -79,7 +81,25 @@ namespace MineSweeperNSlidePuzzle
             {
                 return;
             }
-            if (WhereMine[xy[0], xy[1]] == 1000)
+            
+            SearchIfZero(xy[0], xy[1]);
+            //if (btn.Content == "")
+            //{
+            //    btn.Content = WhereMine[xy[0], xy[1]];
+            //    btn.Background = brush_found;
+            //}
+            if (GameEndCheck())
+            {
+                img_Face.Source = new BitmapImage(new Uri("/MineSweeper2.png", UriKind.RelativeOrAbsolute));
+                GameOver = true;
+            }
+        }
+        void SearchIfZero(int x,int y)
+        {
+            if (x >= xx || y >= yy || x < 0 || y < 0) { return; }
+            Button btn = buttons[x, y];
+            if (btn.Background == brush_found||btn.Content.ToString()=="F") return;
+            if (WhereMine[x, y] == 1000)
             {
                 btn.Content = "B";
                 for(int i = 0; i < xx; i++)
@@ -95,15 +115,21 @@ namespace MineSweeperNSlidePuzzle
                 img_Face.Source = new BitmapImage(new Uri("/MineSweeper3.png", UriKind.RelativeOrAbsolute));
                 GameOver = true;
             }
-            if (btn.Content == "")
+            
+            if (btn.Content.ToString() == "")
             {
-                btn.Content = WhereMine[xy[0], xy[1]];
+                btn.Content = WhereMine[x, y];
                 btn.Background = brush_found;
             }
-            if (GameEndCheck())
+            if (WhereMine[x, y] == 0)
             {
-                img_Face.Source = new BitmapImage(new Uri("/MineSweeper2.png", UriKind.RelativeOrAbsolute));
-                GameOver = true;
+                for(int i = 0; i < 3; i++)
+                {
+                    for(int j=0;j < 3; j++)
+                    {
+                        SearchIfZero(x+i - 1,y+ j - 1);
+                    }
+                }
             }
         }
         int ClickFlag_X,ClickFlag_Y;
@@ -129,6 +155,20 @@ namespace MineSweeperNSlidePuzzle
                     else if(buttons[ClickFlag_X, ClickFlag_Y].Content == "")
                     {
                         buttons[ClickFlag_X, ClickFlag_Y].Content = "F";
+                    }
+                }
+                if (e.ChangedButton == MouseButton.Middle)
+                {
+                    if (GameStart == false)
+                    {
+                        MakeNewBoard(ClickFlag_X, ClickFlag_Y);
+                    }
+                    for (int i = 0; i < 3; i++)
+                    {
+                        for (int j = 0; j < 3; j++)
+                        {
+                            SearchIfZero(ClickFlag_X + i - 1, ClickFlag_Y + j - 1);
+                        }
                     }
                 }
             }
