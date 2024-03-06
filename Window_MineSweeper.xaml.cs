@@ -38,7 +38,7 @@ namespace MineSweeperNSlidePuzzle
                     buttons[i, j].Name = "btn_" + i.ToString() + "_" + j.ToString();
                     buttons[i, j].HorizontalAlignment = HorizontalAlignment.Left;
                     buttons[i, j].VerticalAlignment = VerticalAlignment.Top;
-                    buttons[i, j].Margin = new Thickness(15 + 40 * j, 128 + 40 * i, 0, 0);
+                    buttons[i, j].Margin = new Thickness(15 + 40 * i, 128 + 40 * j, 0, 0);
                     buttons[i, j].Height = 35;
                     buttons[i, j].Width = 35;
                     buttons[i, j].Click += new RoutedEventHandler(btn_Click);
@@ -53,16 +53,6 @@ namespace MineSweeperNSlidePuzzle
             GameStart = false;
             GameOver = false;
         }
-        //protected override void OnClosing(CancelEventArgs e)
-        //{
-        //    //base.OnClosing(e);
-        //    e.Cancel = true;
-        //    Dispatcher.BeginInvoke(DispatcherPriority.Normal, new FHideWindow(_HideThisWindow));
-        //}
-        void _HideThisWindow()
-        {
-            this.Hide();
-        }
         SolidColorBrush brush_reset = new SolidColorBrush(Color.FromRgb(221, 221, 221));
         SolidColorBrush brush_found = new SolidColorBrush(Color.FromRgb(180, 180, 180));
         
@@ -72,7 +62,6 @@ namespace MineSweeperNSlidePuzzle
             if (GameOver) return;
             Button btn = (Button)sender;
             int[] xy = getWhatButton(btn);
-            //tb_Log.Text = xy[0].ToString()+", "+xy[1].ToString();
             if (GameStart == false)
             {
                 MakeNewBoard(xy[0], xy[1]);
@@ -83,16 +72,7 @@ namespace MineSweeperNSlidePuzzle
             }
             
             SearchIfZero(xy[0], xy[1]);
-            //if (btn.Content == "")
-            //{
-            //    btn.Content = WhereMine[xy[0], xy[1]];
-            //    btn.Background = brush_found;
-            //}
-            if (GameEndCheck())
-            {
-                img_Face.Source = new BitmapImage(new Uri("/MineSweeper2.png", UriKind.RelativeOrAbsolute));
-                GameOver = true;
-            }
+            
         }
         void SearchIfZero(int x,int y)
         {
@@ -130,6 +110,11 @@ namespace MineSweeperNSlidePuzzle
                         SearchIfZero(x+i - 1,y+ j - 1);
                     }
                 }
+            }
+            if (GameEndCheck())
+            {
+                img_Face.Source = new BitmapImage(new Uri("/MineSweeper2.png", UriKind.RelativeOrAbsolute));
+                GameOver = true;
             }
         }
         int ClickFlag_X,ClickFlag_Y;

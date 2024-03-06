@@ -23,21 +23,22 @@ namespace MineSweeperNSlidePuzzle
         public MainWindow()
         {
             InitializeComponent();
-            
-            
         }
 
         private void btn_SlidePuzzle_Click(object sender, RoutedEventArgs e)
         {
-            Window_SlidePuzzle win_slide = new Window_SlidePuzzle(4,4);
+            int xx = int.Parse(tb_slide_XX.Text);
+            int yy = int.Parse(tb_slide_YY.Text);
+            Window_SlidePuzzle win_slide = new Window_SlidePuzzle(xx,yy);
             win_slide.Show();
         }
 
         private void btn_MineSweeper_Click(object sender, RoutedEventArgs e)
         {
-            Window_MineSweeper win_Mine = new Window_MineSweeper(10,10,20);
-            win_Mine.xx = 10;
-            win_Mine.yy = 10;
+            int xx=int.Parse(tb_mine_XX.Text);
+            int yy = int.Parse(tb_mine_YY.Text);
+            int mines = int.Parse(tb_mine_Mines.Text);
+            Window_MineSweeper win_Mine = new Window_MineSweeper(xx,yy,mines);
             win_Mine.Show();
         }
     }

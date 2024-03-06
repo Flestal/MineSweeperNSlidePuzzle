@@ -45,7 +45,7 @@ namespace MineSweeperNSlidePuzzle
                     buttons[i, j].Name = "btn_" + i.ToString() + "_" + j.ToString();
                     buttons[i, j].HorizontalAlignment = HorizontalAlignment.Left;
                     buttons[i, j].VerticalAlignment = VerticalAlignment.Top;
-                    buttons[i, j].Margin = new Thickness(15 + 65 * j, 128 + 65 * i, 0, 0);
+                    buttons[i, j].Margin = new Thickness(15 + 65 * i, 128 + 65 * j, 0, 0);
                     buttons[i, j].Height = 60;
                     buttons[i, j].Width = 60;
                     buttons[i, j].Click += new RoutedEventHandler(btn_Click);
@@ -64,7 +64,7 @@ namespace MineSweeperNSlidePuzzle
         {
             if (!GameStart)
             {
-                StartShuffle(100);
+                StartShuffle(1000);
                 return;
             }
             if (GameOver)
@@ -190,28 +190,17 @@ namespace MineSweeperNSlidePuzzle
             bool res = true;
             for(int i = 0; i < xx*yy-1; i++)
             {
-                if (Board[i / yy, i % yy] != i + 1) res = false;
+                if (Board[i % xx, i / xx] != i + 1) res = false;
             }
             if (Board[xx-1,yy-1]!=0)res=false;
             return res;
         }
-        //protected override void OnClosing(CancelEventArgs e)
-        //{
-        //    //base.OnClosing(e);
-        //    e.Cancel = true;
-        //    Dispatcher.BeginInvoke(DispatcherPriority.Normal, new FHideWindow(_HideThisWindow));
-        //}
 
         private void btn_Reset_Click(object sender, RoutedEventArgs e)
         {
             GameOver = false;
             GameStart = false;
             tb_Log.Text = "Game Reset!";
-        }
-
-        void _HideThisWindow()
-        {
-            this.Hide();
         }
     }
 }

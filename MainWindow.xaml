@@ -7,8 +7,18 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="400" Width="400">
     <Grid>
-        <Button x:Name="btn_MineSweeper" Content="MineSweeper" HorizontalAlignment="Center" Height="180" Margin="0,10,0,0" VerticalAlignment="Top" Width="380" FontSize="24" Click="btn_MineSweeper_Click"/>
-        <Button x:Name="btn_SlidePuzzle" Content="Slide Puzzle" HorizontalAlignment="Center" Height="180" Margin="0,194,0,0" VerticalAlignment="Top" Width="380" FontSize="24" Click="btn_SlidePuzzle_Click"/>
+        <Button x:Name="btn_MineSweeper" Content="MineSweeper" HorizontalAlignment="Center" Height="56" Margin="0,10,0,0" VerticalAlignment="Top" Width="380" FontSize="24" Click="btn_MineSweeper_Click"/>
+        <Button x:Name="btn_SlidePuzzle" Content="Slide Puzzle" HorizontalAlignment="Center" Height="56" Margin="0,194,0,0" VerticalAlignment="Top" Width="380" FontSize="24" Click="btn_SlidePuzzle_Click"/>
+        <TextBox x:Name="tb_mine_XX" HorizontalAlignment="Left" Height="28" Margin="10,101,0,0" TextWrapping="Wrap" Text="20" VerticalAlignment="Top" Width="114" FontSize="14"/>
+        <TextBox x:Name="tb_mine_YY" HorizontalAlignment="Center" Height="28" Margin="0,101,0,0" TextWrapping="Wrap" Text="10" VerticalAlignment="Top" Width="114" FontSize="14"/>
+        <TextBox x:Name="tb_mine_Mines" HorizontalAlignment="Right" Height="28" Margin="0,101,10,0" TextWrapping="Wrap" Text="20" VerticalAlignment="Top" Width="114" FontSize="14"/>
+        <Label Content="X 크기" HorizontalAlignment="Left" Height="25" Margin="10,71,0,0" VerticalAlignment="Top" Width="80" FontSize="14"/>
+        <Label Content="Y 크기" HorizontalAlignment="Left" Height="25" Margin="143,71,0,0" VerticalAlignment="Top" Width="80" FontSize="14"/>
+        <Label Content="지뢰 갯수" HorizontalAlignment="Left" Height="25" Margin="276,71,0,0" VerticalAlignment="Top" Width="80" FontSize="14"/>
+        <TextBox x:Name="tb_slide_XX" HorizontalAlignment="Left" Height="28" Margin="10,288,0,0" TextWrapping="Wrap" Text="4" VerticalAlignment="Top" Width="170" FontSize="14"/>
+        <TextBox x:Name="tb_slide_YY" HorizontalAlignment="Right" Height="28" Margin="0,288,10,0" TextWrapping="Wrap" Text="4" VerticalAlignment="Top" Width="170" FontSize="14"/>
+        <Label Content="X 크기" HorizontalAlignment="Left" Height="25" Margin="10,255,0,0" VerticalAlignment="Top" Width="80" FontSize="14"/>
+        <Label Content="Y 크기" HorizontalAlignment="Right" Height="25" Margin="0,255,100,0" VerticalAlignment="Top" Width="80" FontSize="14"/>
 
     </Grid>
 </Window>
